@@ -20,7 +20,8 @@ class Home extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     let { expression, interval } = this.state;
-    const { length: expressionLength } = expression.split(" ");
+    const symbolsRegExp = new RegExp(/[\/\+\-\*]/);
+    const { length: expressionLength } = expression.split(" ").filter(item => !symbolsRegExp.test(item));
 
     if (!expression) {
       toast.error("Você deve informar uma expressão");
@@ -63,8 +64,6 @@ class Home extends Component {
       },
     ];
 
-    console.log(datasets)
-
 
     return (
       <Graph>
@@ -75,7 +74,6 @@ class Home extends Component {
 
   render() {
     const { interval, expression, roots } = this.state;
-    console.log(interval, expression);
 
     return (
       <Container>
