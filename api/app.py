@@ -29,7 +29,18 @@ def calculate_roots():
         root = functions.get_root(function, guess)
 
         if root is not None:
-            roots.add(root)
+            similar_roots = {root_ for root_ in roots if float("%.2f" % float(root_[0])) == float("%.2f" % float(root[0]))}
+
+            # Validação se existem números muito próximos da possível raiz recebida, e se houver,
+            # a coleção de raízes é filtrada para obter apenas aquele com Y mais próximo de 0
+            if (len(similar_roots) > 0):
+                max_y_axis = list(map(max, zip(*similar_roots)))[1]
+                if max_y_axis > root[1]:
+                    roots = {root_ for root_ in roots if float("%.2f" % float(root_[0])) != float("%.2f" % float(root[0]))}
+                    roots.add(root)
+            else:
+              roots.add(root)
+            
 
         filtered_roots = {root_ for root_ in roots if float(root_[1]) == 0}
 
