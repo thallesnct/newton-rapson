@@ -10,6 +10,10 @@ def create_function(function):
             next_element = char_list[index + 1]
             prev_element = char_list[index - 1]
 
+            # Caso o elemento prévio na verdade seja o ultimo elemento do array, a variável prev_element é resetada
+            if (index - 1 < 0):
+              prev_element = ''
+
             if re.match(r"[a-z]", char) and re.match(r"[0-9]", prev_element):
               char_list[index - 1] = f"{prev_element}*"
             if re.match(r"[0-9]", char):
@@ -86,13 +90,15 @@ def get_possible_roots(function, points, has_root = None, maybe_has_root = None)
   return (has_root, maybe_has_root)
 
 
-def get_root(function, initVal, epsilon = 1e-5):
+def get_root(function, initVal, epsilon = 1e-5, maximum_iterations = 200):
   guess = initVal
   delta = calc_delta(function, guess)
+  counter = 0
 
-  while delta > epsilon:
+  while delta > epsilon and counter < maximum_iterations:
     guess = calc_newton_rapson(function, guess)
     delta = calc_delta(function, guess)
+    counter += 1
   
   y_axis = calc_function(function, float("%.8f" % guess))
   x_axis = guess

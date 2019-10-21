@@ -9,6 +9,7 @@ class Home extends Component {
   state={
     interval: [-10, 10],
     expression: '',
+    expressionForCurrentResult: '',
     roots: [],
     resultsInInterval: [],
   }
@@ -36,14 +37,20 @@ class Home extends Component {
 
     const { data: res } = await this.api.post('/newton', { function: expression, interval: interval.map(item => Number(item)) });
 
+    if (!res.resultsInInterval.length) {
+      toast.error("Não foi possível encontrar uma aproximação da raiz para a expressão informada");
+      return;
+    }
+
     this.setState({
       roots: res.roots,
-      resultsInInterval: res.resultsInInterval
+      resultsInInterval: res.resultsInInterval,
+      expressionForCurrentResult: expression,
     });
   }
 
   createChart = () => {
-    const { roots, resultsInInterval, interval } = this.state;
+    const { roots, resultsInInterval, interval, expressionForCurrentResult } = this.state;
 
     let labels = [];
     for(let i = interval[0]; i <= interval[1]; i++) {
@@ -67,6 +74,9 @@ class Home extends Component {
 
     return (
       <Graph>
+        <label>Equação:</label>
+        <div>{expressionForCurrentResult}</div>
+
         <label>Raizes:</label>
         <div>
           {roots.map(root => <p>(x: {root[0]}, y: {root[1]})</p>)}
