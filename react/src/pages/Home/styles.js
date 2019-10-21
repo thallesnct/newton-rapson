@@ -18,6 +18,7 @@ export const Graph = styled.div`
   background-color: #FFFFFF;
   padding: 2rem;
   margin-top: 2rem;
+  box-shadow: 0 0 0.3rem rgba(0,0,0,.1);
 `;
 
 export const Form = styled.form`
