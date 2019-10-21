@@ -1,5 +1,6 @@
 .vscode
 api/__pycache__
+api/util/__pycache__
 api/env
 react/node_modules
 react/yarn.lock

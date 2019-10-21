@@ -3,21 +3,37 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin: 0;
   background-color: #F2F4F6;
-  height: 100%;
-  padding: 36px 15vw;
-  display: flex;
-  justify-content: space-between;
+  min-height: 100%;
+  padding: 36px 10vw;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media screen and (max-width: 1024px) {
+    padding: 36px 7.5vw;
+  }
+`;
+
+export const Graph = styled.div`
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 2rem;
+  margin-top: 2rem;
 `;
 
 export const Form = styled.form`
   height: fit-content;
   width: 100%;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 140px 1fr auto;
   grid-column-gap: 16px;
   padding: 2rem;
   box-shadow: 0 0 0.3rem rgba(0,0,0,.1);
   background-color: #FFFFFF;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 16px;
+  }
 
   div {
     display: inline-flex;
