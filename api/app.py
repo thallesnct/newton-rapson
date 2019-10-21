@@ -40,4 +40,4 @@ def calculate_roots():
       all_roots.append([ str(point), str(functions.calc_function(function, point)) ])
 
 
-  return jsonify({ 'roots': list(roots), 'allResults': all_roots })
+  return jsonify({ 'roots': list(roots), 'resultsInInterval': all_roots })
