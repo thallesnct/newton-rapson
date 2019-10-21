@@ -2,24 +2,29 @@ import re
 
 
 def create_function(function):
-    # function = function.replace("^", "**")
     char_list = list(function)
 
-    for char in char_list:
-        index = char_list.index(char)
+    for index, char in enumerate(char_list):
 
         if (len(char_list) > index + 1):
             next_element = char_list[index + 1]
+            prev_element = char_list[index - 1]
 
+            if re.match(r"[a-z]", char) and re.match(r"[0-9]", prev_element):
+              char_list[index - 1] = f"{prev_element}*"
             if re.match(r"[0-9]", char):
                 if re.match(r"[a-z]", next_element) or re.match(r"\(", next_element):
-                    #  or re.match(r"√", next_element) <- Ignore isso aqui por enquanto
-                    # Adiciona o * se necessário
                     char_list.insert(index + 1, '*')
-            elif "^" == next_element:
+            if "^" == next_element:
               char_list[index] = f"pow({char_list[index]}"
               char_list[index + 1] = ","
-              char_list[index + 2] = f"{char_list[index + 2]})"
+              end_of_exponencial = index + 2;
+              
+              # Encontra o ultimo algarismo do exponencial, ou seja, se for algo como 10, o indice parará após o 0
+              while(char_list[end_of_exponencial] != ' ' and end_of_exponencial < len(char_list) - 1):
+                  end_of_exponencial = end_of_exponencial + 1
+              
+              char_list.insert(end_of_exponencial + 1, ")")
 
     return "".join(char_list)
 

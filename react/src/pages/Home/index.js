@@ -67,6 +67,12 @@ class Home extends Component {
 
     return (
       <Graph>
+        <label>Raizes:</label>
+        <div>
+          {roots.map(root => <p>(x: {root[0]}, y: {root[1]})</p>)}
+        </div>
+
+        <label>Gráfico da Função:</label>
         <Scatter options={{ responsive: true }} data={{ datasets }} />
       </Graph>
     )

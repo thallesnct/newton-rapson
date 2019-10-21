@@ -19,6 +19,21 @@ export const Graph = styled.div`
   padding: 2rem;
   margin-top: 2rem;
   box-shadow: 0 0 0.3rem rgba(0,0,0,.1);
+
+  & > div {
+    padding: 16px;
+    background-color: #F2F4F6;
+    color: #424242;
+    margin: 16px 0 24px;
+  }
+
+  & > label {
+    color: #212121;
+
+    &:not(:first-of-type) {
+      margin-top: 16px;
+    }
+  }
 `;
 
 export const Form = styled.form`
