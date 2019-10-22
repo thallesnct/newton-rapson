@@ -44,7 +44,8 @@ Agora é possivel acessar a API pela rota [http://localhost:5000](http://localho
 
 # React
 
-![image](https://user-images.githubusercontent.com/34549814/67231295-6e16f680-f415-11e9-9799-310fc85f8f99.png)
+![image](https://user-images.githubusercontent.com/34549814/67277079-62224780-f49c-11e9-9cae-f86cd4c655c5.png)
+
 
 Clone o repositório, caso não tenha clonado na configuração da API
 
